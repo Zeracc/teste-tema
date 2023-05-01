@@ -2,7 +2,6 @@ import 'package:alter_theme/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
   @override
@@ -22,20 +21,28 @@ class ThemeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        RadioListTile(
-          title: Text('Light'),
-          value: ThemeMode.light,
-          groupValue: BlocProvider.of<ThemeCubit>(context).state,
-          onChanged: (value) {
-            BlocProvider.of<ThemeCubit>(context).toggleTheme();
+        BlocBuilder<ThemeCubit, ThemeMode>(
+          builder: (context, state) {
+            return RadioListTile(
+              title: Text('Light'),
+              value: ThemeMode.light,
+              groupValue: state,
+              onChanged: (value) {
+                context.read<ThemeCubit>().toggleTheme();
+              },
+            );
           },
         ),
-        RadioListTile(
-          title: Text('Dark'),
-          value: ThemeMode.dark,
-          groupValue: BlocProvider.of<ThemeCubit>(context).state,
-          onChanged: (value) {
-            BlocProvider.of<ThemeCubit>(context).toggleTheme();
+        BlocBuilder<ThemeCubit, ThemeMode>(
+          builder: (context, state) {
+            return RadioListTile(
+              title: Text('Dark'),
+              value: ThemeMode.dark,
+              groupValue: state,
+              onChanged: (value) {
+                context.read<ThemeCubit>().toggleTheme();
+              },
+            );
           },
         ),
       ],
