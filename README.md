@@ -1,4 +1,4 @@
-# alter_theme
+# test_theme
 
 A new Flutter project.
 
