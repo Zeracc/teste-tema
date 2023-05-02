@@ -3,7 +3,6 @@ import 'package:alter_theme/my_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -18,8 +17,14 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             title: 'Flutter Demo',
-            theme: ThemeData.light(),
-            darkTheme: ThemeData.dark(),
+            theme: ThemeData(
+              useMaterial3: true,
+              brightness: Brightness.light,
+            ),
+            darkTheme: ThemeData(
+              useMaterial3: true,
+              brightness: Brightness.dark,
+            ),
             themeMode: state,
             home: const MyHomePage(),
           );

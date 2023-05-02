@@ -19,33 +19,67 @@ class ThemeSelector extends StatelessWidget {
   const ThemeSelector({super.key});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder<ThemeCubit, ThemeMode>(
-          builder: (context, state) {
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, state) {
+        return ListView.builder(
+          itemBuilder: (context, index) {
             return RadioListTile(
-              title: Text('Light'),
-              value: ThemeMode.light,
+              title: Text('${ThemeMode.values[index]}'),
+              value: ThemeMode.values[index],
               groupValue: state,
               onChanged: (value) {
-                context.read<ThemeCubit>().toggleTheme();
+                if (value == null) return;
+                context.read<ThemeCubit>().toggleTheme(value);
               },
             );
           },
-        ),
-        BlocBuilder<ThemeCubit, ThemeMode>(
-          builder: (context, state) {
-            return RadioListTile(
-              title: Text('Dark'),
-              value: ThemeMode.dark,
-              groupValue: state,
-              onChanged: (value) {
-                context.read<ThemeCubit>().toggleTheme();
-              },
-            );
-          },
-        ),
-      ],
+          itemCount: ThemeMode.values.length,
+        );
+      },
     );
+
+    // return Column(
+//       children: [
+//         BlocBuilder<ThemeCubit, ThemeMode>(
+//           builder: (context, state) {
+//             return RadioListTile(
+//               title: Text('Light'),
+//               value: ThemeMode.light,
+//               groupValue: state,
+//               onChanged: (value) {
+//                 if (value == null) return;
+//                 context.read<ThemeCubit>().toggleTheme(value);
+//               },
+//             );
+//           },
+//         ),
+//         BlocBuilder<ThemeCubit, ThemeMode>(
+//           builder: (context, state) {
+//             return RadioListTile(
+//               title: Text('Dark'),
+//               value: ThemeMode.dark,
+//               groupValue: state,
+//               onChanged: (value) {
+//                 if (value == null) return;
+//                 context.read<ThemeCubit>().toggleTheme(value);
+//               },
+//             );
+//           },
+//         ),
+//         BlocBuilder<ThemeCubit, ThemeMode>(
+//           builder: (context, state) {
+//             return RadioListTile(
+//               title: Text('Sistema'),
+//               value: ThemeMode.system,
+//               groupValue: state,
+//               onChanged: (value) {
+//                 if (value == null) return;
+//                 context.read<ThemeCubit>().toggleTheme(value);
+//               },
+//             );
+//           },
+//         ),
+//       ],
+//     );
   }
 }
