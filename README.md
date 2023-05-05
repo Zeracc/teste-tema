@@ -1,6 +1,6 @@
-# test_theme
+# tes_theme
 
-A new Flutter project.
+Fazendo alteração de temas utilizando o gerenciamento de estado com CUBIT.
 
 ## Getting Started
 
